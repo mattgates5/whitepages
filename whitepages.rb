@@ -14,7 +14,6 @@ class Directory
     @keys = @directory.keys
   end
 
-  #def contact(method, group)
   def contact(params)
     group = params[:group]
     method = params[:method]

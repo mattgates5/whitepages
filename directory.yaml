@@ -1,0 +1,17 @@
+# directory.yaml
+#
+# groupname:
+#   - name: Person Name
+#     email: person@email.tld
+#     sms: 1234567890
+#   - name: Second Name
+#     email: second@email.tld
+#     sms: 9876543210
+
+testgroup:
+  - name: Bob Person
+    email: person@email.tld
+    sms: +12345678910
+  - name: Xavier Ample
+    email: xample@example.com
+    sms: +4455555555
