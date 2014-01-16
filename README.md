@@ -1,7 +1,7 @@
 whitepages
 ==========
 
-Simple directory service using Sinatra, yaml, and haml.
+Super simple directory service using Sinatra, yaml, and erb.
 
 To run:
 
@@ -19,3 +19,18 @@ Entries can be written thus:
       - name: Xavier Ample
         email: xample@example.com
         sms: +4455555555
+
+Usage
+-----
+
+    /                   default page (shows help)
+    /help               help page
+    /groups             list available groups
+    /methods            list available contact methods
+    /[method]/[group]   show contact information for group with method
+
+Requirements
+------------
+
+* sinatra
+* yaml

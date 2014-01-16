@@ -16,17 +16,17 @@ class Directory
   end
 
   def contact(params)
-    group = params[:group]
     method = params[:method]
-    arr = []
-    grp = @directory[group]
+    a = []
+    group = @directory[params[:group]]
 
-    return ["error"] if grp.nil?
-    grp.each { |p| arr.push(p[method]) unless p[method].nil? }
-    arr = ["arr"] if arr.nil?
-
-    arr
+    return ["error"] if group.nil?
+    group.each { |p| a.push(p[method]) unless p[method].nil? }
+    a = ["error"] if a.nil?
+    a
   end
+
+  private
 
   def uniq_methods(dir)
     a = []
