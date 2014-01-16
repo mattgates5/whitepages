@@ -1,17 +1,18 @@
 # WhitePages
 # Simple YAML/Sinatra Directory
 
-require 'haml'
 require 'yaml'
 require 'sinatra'
 
 class Directory
   attr_reader :directory
-  attr_reader :keys
+  attr_reader :groups
+  attr_reader :methods
 
   def initialize(file)
     @directory = YAML.load_file(file)
-    @keys = @directory.keys
+    @groups = @directory.keys
+    @methods = uniq_methods(@directory)
   end
 
   def contact(params)
@@ -26,21 +27,42 @@ class Directory
 
     arr
   end
+
+  def uniq_methods(dir)
+    a = []
+    dir.each do |group, members|
+      members.each do |values|
+        values.each do |k,v|
+          a.push k unless k == "name"
+        end
+      end
+    end
+    a.sort.uniq
+  end
 end
 
 dir = Directory.new('directory.yaml')
 
 # Routes
 get '/' do
-  haml :help
+  erb :help
+end
+
+get '/help' do
+  erb :help
 end
 
 get '/groups' do
-  @data = dir.keys
-  haml :show
+  @data = dir.groups
+  erb :show
+end
+
+get '/methods' do
+  @data = dir.methods
+  erb :show
 end
 
 get '/:method/:group' do
   @data = dir.contact(params)
-  haml :show
+  erb :show
 end
